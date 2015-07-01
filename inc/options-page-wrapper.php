@@ -47,6 +47,28 @@
 							
 							<p>Below are your 20 most recent badges.</p>
 
+							<ul class="wptreehouse-badges-list">
+
+							<?php for($i = 0; $i < 20; $i++) { ?>
+
+								<li>
+									<ul>
+										<li>
+											<img class="wptreehouse-gravatar" width="120px" src="<?php echo $plugin_url . '/images/wp-badge.png'; ?>">								
+										</li>										
+										<li class="wptreehouse-badge-name">
+											<a href="#"><?php _e( 'Badge Name', 'wptreehouse-badges' ); ?></a>
+										</li>
+										<li class="wptreehouse-project-name">
+											<a href="#"><?php _e( 'Project Name', 'wptreehouse-badges' ); ?></a>
+										</li>
+									</ul>									
+								</li>	
+
+							<?php } ?>
+
+							</ul>
+
 						</div>
 						<!-- .inside -->
 
@@ -71,11 +93,20 @@
 						<!-- Toggle -->
 
 						<h3 class="hndle"><span><?php esc_attr_e(
-									'Sidebar Content Header', 'wptreehouse-badges'
+									'User Profile', 'wptreehouse-badges'
 								); ?></span></h3>
 
 						<div class="inside">
-							<p><?php esc_attr_e( 'Everything you see here, from the documentation to the code itself, was created by and for the community. WordPress is an Open Source project, which means there are hundreds of people all over the world working on it. (More than most commercial platforms.) It also means you are free to use it for anything from your cat’s home page to a Fortune 500 web site without paying anyone a license fee and a number of other important freedoms.', 'wptreehouse-badges' ); ?></p>
+
+							<p><img width="100%" class="wptreehouse-gravatar" src="<?php echo $plugin_url . '/images/mike-the-frog.png'; ?>" alt="Mike the Frog Gravatar"></p>
+
+								<ul class="wptreehouse-badges-and-points">							
+
+									<li><?php _e( 'Badges:', 'wptreehouse-badges'); ?> <strong>200</strong></li>
+									<li><?php _e( 'Points:', 'wptreehouse-badges'); ?> <strong>10000</strong></li>
+
+								</ul>
+
 						</div>
 						<!-- .inside -->
 
