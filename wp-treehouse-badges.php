@@ -72,27 +72,34 @@ function wptreehouse_badges_options_page() {
 
 		$hidden_field = esc_html( $_POST['wptreehouse_form_submitted'] );
 
+		// Test if form has been submitted
 		if( $hidden_field == 'Y' ) {
 
 			$wptreehouse_username = esc_html( $_POST['wptreehouse_username'] );
+			$wptreehouse_profile = wptreehouse_badges_get_profile( $wptreehouse_username );
 
 			$options['wptreehouse_username'] = $wptreehouse_username;
+			$options['wptreehouse_profile'] = $wptreehouse_profile;
 			$options['last_updated'] = time();
 
 			update_option( 'wptreehouse_badges', $options );
-
-			
 
 		}
 
 	}
 
+	// Assign options table values to $options variable
 	$options = get_option( 'wptreehouse_badges' );
 
+	// Check if options table has values
 	if( !empty( $options ) ) {
 
 		$wptreehouse_username = $options['wptreehouse_username'];
+		$last_updated = $options['last_updated'];
+		$wptreehouse_profile = $options['wptreehouse_profile'];
 		echo $wptreehouse_username;
+		echo $last_updated;
+		//print_r($wptreehouse_profile);
 
 	}
 
@@ -100,8 +107,27 @@ function wptreehouse_badges_options_page() {
 
 }
 
+
 /*
- * Create settings page
+ * Get JSON feed profile
+ */
+function wptreehouse_badges_get_profile( $wptreehouse_username ) {
+
+	$json_feed_url = 'http://teamtreehouse.com/' . $wptreehouse_username . '.json';
+	$args = array( 'timeout' => 120 );
+
+	$json_feed = wp_remote_get( $json_feed_url, $args );
+
+	// Convert body of $json_feed array to WP object
+	$wptreehouse_profile = json_decode( $json_feed['body'] );
+
+	return $wptreehouse_profile;
+
+}
+
+
+/*
+ * Enqueue styles
  */
 
 function wptreehouse_badges_styles() {
