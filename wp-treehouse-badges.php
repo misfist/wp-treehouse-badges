@@ -48,7 +48,7 @@ function wptreehouse_badges_options_page() {
 
 	}
 
-	echo '<h2>' . __( 'Welcome to the Setting Page', 'wptreehouse-badges' ) . '</h2>';
+	require( 'inc/options-page-wrapper.php' );
 
 }
 
