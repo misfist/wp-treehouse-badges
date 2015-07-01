@@ -1,6 +1,6 @@
 <?php
 /*
- *	Plugin Name: Official Treehouse Badges Plugin
+ *	Plugin Name: Unofficial Treehouse Badges Plugin
  *	Plugin URI: http://patricia-lutz.com
  *	Description: Provides both widgets and shortcodes to help you display your Treehouse profile badges on your website.  The official Treehouse badges plugin.
  *	Version: 1.0
@@ -9,6 +9,12 @@
  *	License: GPL2
  *
 */
+
+/*
+ * Assign global variables
+ */
+
+$plugin_url =  WP_PLUGIN_URL . '/wp-treehouse-badges';
 
 /*
  * Link to plugins settings in Settings > Treehouse Badges
@@ -48,9 +54,25 @@ function wptreehouse_badges_options_page() {
 
 	}
 
+	/*
+	 * Declare global variable to make available to required file
+	 */
+
+	global $plugin_url;
+
 	require( 'inc/options-page-wrapper.php' );
 
 }
+
+/*
+ * Create settings page
+ */
+
+function wptreehouse_badges_styles() {
+	wp_enqueue_style( 'wptreehouse_badges_styles', plugins_url( 'wp-treehouse-badges/css/style.css' ) );
+}
+
+add_action( 'admin_head', 'wptreehouse_badges_styles' );
 
 
 ?>
