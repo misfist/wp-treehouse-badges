@@ -12,7 +12,6 @@
 
 				<div class="meta-box-sortables ui-sortable">
 
-
 					<div class="postbox">
 
 						<div class="handlediv" title="Click to toggle"><br></div>
@@ -58,7 +57,7 @@
 
 						<div class="inside">
 							
-							<p>Below are your 20 most recent badges.</p>
+							<p><?php _e('Below are your 20 most recent badges.', 'wptreehouse-badges'); ?></p>
 
 							<ul class="wptreehouse-badges-list">
 
@@ -87,6 +86,49 @@
 
 					</div>
 					<!-- .postbox -->
+
+					<div class="postbox">
+
+						<div class="inside">
+
+							<h3>
+								<?php
+								// Why not $wptreehouse_profile->name ?
+								echo $wptreehouse_profile->{'name'}; ?>
+							</h3>
+							<p><?php echo $wptreehouse_profile->{'profile_url'}; ?></p>
+
+							<ul class="wptreehouse-badges-list">
+
+								<?php foreach ($wptreehouse_profile->badges as $badge) { ?>
+
+								<li>
+									<ul>
+
+										<li>
+											<img class="wptreehouse-gravatar" width="120px" src="<?php echo $badge->icon_url; ?>">
+										</li>
+										<li class="wptreehouse-badge-name">
+											<a href="<?php echo $badge->url; ?>"><?php echo $badge->name; ?></a>
+										</li>
+										<li class="wptreehouse-project-name">
+											<a href="<?php echo $badge->url; ?>"><?php echo $badge->name; ?></a>
+										</li>
+
+									</ul>
+								</li>
+								
+								<?php }?>
+
+							</ul>
+
+
+
+							
+
+						</div>
+
+					</div>
 
 
 				</div>
