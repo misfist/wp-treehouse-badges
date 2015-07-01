@@ -12,21 +12,32 @@
 
 				<div class="meta-box-sortables ui-sortable">
 
+
 					<div class="postbox">
 
 						<div class="handlediv" title="Click to toggle"><br></div>
 						<!-- Toggle -->
 
-						<h3 class="hndle"><span><?php esc_attr_e( 'Let\'s Get Started', 'wptreehouse-badges' ); ?></span>
+						<h3 class="hndle"><span><?php esc_attr_e( 'Your Username', 'wptreehouse-badges' ); ?></span>
 						</h3>
 
 						<div class="inside">
 							
-							<form method="post" action="">
-								<label for="wptreehouse-username">Username</label>
-								<input name="wptreehouse-username" id="wptreehouse-username" type="text" value="" class="regular-text" placeholder="Enter your username" /><br>
+							<form name="wptreehouse_username_form" method="post" action="">
+
+								<input type="hidden" name="wptreehouse_form_submitted" value="Y" />
+
+								<label for="wptreehouse_username">Username</label>
+								<input name="wptreehouse_username" id="wptreehouse-username" type="text" value="<?php echo $wptreehouse_username; ?>" class="regular-text" placeholder="Enter your username" /><br>
+
+								<?php if( !isset( $wptreehouse_username ) || $wptreehouse_username == '' ) { 
+									$button_text = 'Save';
+								} else {
+									$button_text = 'Update';
+								} ?>
 								
-								<?php submit_button( 'Save', $type = 'primary', $name = 'wptreehouse-username-submit', $wrap = FALSE, $other_attributes = NULL ); ?>
+								<?php submit_button( $button_text, $type = 'primary', $name = 'wptreehouse-username-submit', $wrap = FALSE, $other_attributes = NULL ); ?>
+							
 							</form>
 
 						</div>
@@ -34,6 +45,8 @@
 
 					</div>
 					<!-- .postbox -->
+
+					<?php if( isset( $wptreehouse_username ) || $wptreehouse_username != '' ) { ?>
 
 					<div class="postbox">
 
@@ -112,6 +125,8 @@
 
 					</div>
 					<!-- .postbox -->
+
+					<?php } ?>
 
 				</div>
 				<!-- .meta-box-sortables -->
