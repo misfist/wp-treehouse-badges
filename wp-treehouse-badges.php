@@ -16,6 +16,7 @@
 
 $plugin_url =  WP_PLUGIN_URL . '/wp-treehouse-badges';
 $options = array();
+$display_json_feed = false; // For debugging - set to false in production
 
 /*
  * Link to plugins settings in Settings > Treehouse Badges
@@ -62,6 +63,7 @@ function wptreehouse_badges_options_page() {
 
 	global $plugin_url;
 	global $options;
+	global $display_json_feed; // For debugging
 
 
 	/*
@@ -103,7 +105,8 @@ function wptreehouse_badges_options_page() {
 
 	}
 
-	require( 'inc/options-page-wrapper.php' );
+	require( 'inc/view-options-page.php' );
+	//require( 'wp-treehouse-badges-widget.php' );
 
 }
 
@@ -135,6 +138,40 @@ function wptreehouse_badges_styles() {
 }
 
 add_action( 'admin_head', 'wptreehouse_badges_styles' );
+
+
+/*
+ * Include widget
+ */
+
+//include_once( 'wp-treehouse-badges-widget.php' );
+
+
+class Wptreehouse_Badges_Widget extends WP_Widget {
+
+	function wptreehouse_badges_widget() {
+		// Instantiate the parent object
+		parent::__construct( false, 'Treehouse Badges Widget' );
+	}
+
+	function widget( $args, $instance ) {
+		// Widget output
+	}
+
+	function update( $new_instance, $old_instance ) {
+		// Save widget options
+	}
+
+	function form( $instance ) {
+		// Output admin widget options form
+	}
+}
+
+function wptreehouse_register_widget() {
+	register_widget( 'Wptreehouse_Badges_Widget' );
+}
+
+add_action( 'widgets_init', 'wptreehouse_register_widget' );
 
 
 ?>
